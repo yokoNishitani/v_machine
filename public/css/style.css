@@ -1,0 +1,240 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #fafdff;
+}
+
+h1 {
+    display: block;
+    width: 900px;
+    color: #333;
+    font-size: 36px;
+    text-align: left;
+    margin: 50px auto;
+}
+
+button {
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn {
+    display: flex;
+    gap: 50px;
+    margin-top: 80px;
+}
+
+.btn button:first-child {
+    background-color: #ed6d35;
+}
+
+.btn button:last-child {
+    background-color: #008db7;
+}
+
+/* login.blade.php */
+/* .h1__login {
+    text-align: center;
+}
+
+.form__login {
+    width: 500px;
+    margin: 0 auto 50px;
+    padding: 50px;
+}
+
+.form__login div input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 25px;
+}
+
+.btn__login button {
+    width: 130px;
+    margin: 0 auto;
+    border-radius: 20px;
+} */
+
+
+
+/* register.blade.php */
+/* .h1__register  {
+    text-align: center;
+}
+
+.form__user {
+    width: 500px;
+    margin: 0 auto 50px;
+    padding: 50px;
+}
+
+.form__user div input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 25px;
+}
+
+.btn__register button {
+    width: 130px;
+    margin: 0 auto;
+    border-radius: 20px;
+} */
+
+/* producr_info_list.blade.php */
+
+.form__sort {
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+    margin: 0 auto 50px;
+}
+
+.form__sort form {
+    width: 80%;
+}
+
+.form__sort form input,
+.form__sort form select {
+    padding: 5px;
+    width: 40%;
+}
+
+.form__sort form select {
+    margin-left: 10px;
+}
+
+.form__sort button {
+    padding: 5px 20px;
+}
+
+.table__list {
+    border: #333 solid 1px;
+    width: 900px;
+    margin: 0 auto;
+}
+
+.table__list tr th,
+.table__list tr td {
+    color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.table__list tr:first-child button {
+    background-color: #ed6d35;
+}
+
+.table__list tr:nth-child(2n) {
+    background-color: #d3d3d8;
+}
+
+.list__btn--detail {
+    background-color: #008db7;
+}
+
+.list__btn--remove {
+    color: #fafdff;
+    background-color: #dc143c;
+}
+
+/* product_register.blade.php */
+
+.h1__register {
+    width: 600px;
+}
+
+.form__product-register {
+    border: #333 solid 1px;
+    padding: 50px 50px 20px;
+    width: 600px;
+    margin: 0 auto 100px;
+}
+
+.form__product-register .require label::after {
+    content: "※";
+    display: inline-block;
+    color: #dc143c;
+}
+
+.form__product-register>div {
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.form__product-register>div label {
+    display: block;
+    width: 30%;
+    padding: 5px;
+    align-items: first baseline;
+}
+
+.form__product-register div input,
+.form__product-register div select,
+.form__product-register div textarea {
+    width: 50%;
+    padding: 5px;
+}
+
+/* product_info_detail.blade.php */
+
+.table__detail--wrap {
+    border: #333 solid 1px;
+    width: 900px;
+    margin: 0 auto 50px;
+    padding: 50px;
+}
+
+.table__detail tr th,
+.table__detail tr td {
+    display: inline-block;
+    padding: 10px 10px 10px 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.table__detail {
+    width: 100%;
+}
+
+.table__detail tr th {
+    width: 20%;
+}
+
+.table__detail tr td {
+    border: #d3d3d8 solid 1px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+/* product_info_editor.blade.php */
+
+.form__editor {
+    border: #333 solid 1px;
+    width: 900px;
+    margin: 0 auto 50px;
+    padding: 50px;
+}
+
+.form__editor div {
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.form__editor div label {
+    display: block;
+    width: 15%;
+    padding: 5px;
+    align-items: first baseline;
+}
+
+.form__editor div input,
+.form__editor div select,
+.form__editor div textarea {
+    width: 40%;
+    padding: 5px;
+}
