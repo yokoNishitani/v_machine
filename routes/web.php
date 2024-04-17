@@ -3,6 +3,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CompanyController;
 
 
@@ -24,6 +26,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/product_info_list', [App\Http\Controllers\CompanyController::class, 'ProductInfoList'])->name('product_info_list');
 
 Route::post('/product_info_list', [App\Http\Controllers\CompanyController::class, 'ProductInfoList'])->name('product_info_list');
 
