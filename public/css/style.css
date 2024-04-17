@@ -36,7 +36,29 @@ button {
 }
 
 /* login.blade.php */
-/* .h1__login {
+
+.ul__product-blade--wrap {
+    position: relative;
+    height: 50px;
+}
+
+.ul__product-blade {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.ul__product-blade li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.ul__product-blade li a {
+    text-decoration: none;
+}
+
+.h1__login {
+    width: 500px;
     text-align: center;
 }
 
@@ -56,12 +78,12 @@ button {
     width: 130px;
     margin: 0 auto;
     border-radius: 20px;
-} */
+}
 
 
 
 /* register.blade.php */
-/* .h1__register  {
+.h1__register {
     text-align: center;
 }
 
@@ -81,7 +103,7 @@ button {
     width: 130px;
     margin: 0 auto;
     border-radius: 20px;
-} */
+}
 
 /* producr_info_list.blade.php */
 

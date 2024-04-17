@@ -16,15 +16,15 @@ class CompanyController extends Controller
 
     public function ProductInfoList()
     {
-        $sales = Sale::with(['product','company'])->get();
-        return view('product_info_list', ['sales' => $sales]);
+        $products = Product::with(['company'])->get();
+        return view('product_info_list', ['products' => $products]);
     }
 
     public function ProductInfoDetail($id)
     {
-        $model = new Sale();
-        $sale = $model::find($id);
-        return view('product_info_detail', compact('sale'));
+        $model = new Product();
+        $product = $model::find($id);
+        return view('product_info_detail', compact('product'));
     }
 
     public function ProductInfoEditor()
@@ -38,9 +38,8 @@ class CompanyController extends Controller
 
     public function ProductRegister()
     {
-        $model = new Company();
-        $companies = $model->getCompanyList();
-        return view('product_register', ['companies' => $companies]);
+        $products = Product::with(['company'])->get();
+        return view('product_register', ['products' => $products]);
     }
 
 

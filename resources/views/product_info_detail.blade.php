@@ -9,31 +9,31 @@
     <table class="table__detail">
         <tr>
             <th>ID</th>
-            <td>{{ $sale->product_id }}.</td>
+            <td>{{ $product->id }}.</td>
         </tr>
         <tr>
             <th>商品画像</th>
-            <td>{{ $sale->product->img_path }}</td>
+            <td>{{ $product->img_path }}</td>
         </tr>
         <tr>
             <th>商品名</th>
-            <td>{{ $sale->product->product_name }}</td>
+            <td>{{ $product->product_name }}</td>
         </tr>
         <tr>
             <th>メーカー</th>
-            <td>{{ $sale->product->company->company_name ?? 'none' }}</td>
+            <td>{{ $product->company->company_name }}</td>
         </tr>
         <tr>
             <th>価格</th>
-            <td>{{ $sale->product->price }}</td>
+            <td>{{ $product->price }}</td>
         </tr>
         <tr>
             <th>在庫数</th>
-            <td>{{ $sale->product->stock }}</td>
+            <td>{{ $product->stock }}</td>
         </tr>
         <tr>
             <th>コメント</th>
-            <td>{{ $sale->product->comment }}</td>
+            <td>{{ $product->comment }}</td>
         </tr>
     </table>
 

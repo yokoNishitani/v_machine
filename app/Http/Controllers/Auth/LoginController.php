@@ -41,4 +41,9 @@ class LoginController extends Controller
     {
         return 'email';
     }
+
+    public function redirectPath()
+    {
+        return '/product_info_list';
+    }
 }

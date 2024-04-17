@@ -8,6 +8,7 @@
 <form action="{{ route('regist_submit') }}" method="post" class="form__product-register">
     @csrf
 
+
     <div class="require">
         <label>商品名</label>
         <input type="text" name="product_name" value="{{ old('product_name') }}">
@@ -19,8 +20,8 @@
     <div class="require">
         <label>メーカー名</label>
         <select name="company_name" value="{{ old('company_name') }}">
-            @foreach ($companies as $company)
-            <option>{{ $company->company_name }}</option>
+            @foreach ($products as $product)
+            <option>{{ $product->company->company_name }}</option>
             @endforeach
         </select>
     </div>

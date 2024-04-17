@@ -41,6 +41,3 @@ Route::post('/product_register',[App\Http\Controllers\CompanyController::class, 
 Route::get('/product_info_editor', [App\Http\Controllers\CompanyController::class, 'ProductInfoEditor'])->name('product_info_editor');
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

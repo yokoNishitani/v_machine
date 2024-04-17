@@ -27,15 +27,15 @@
     </tr>
 
 
-@foreach ($sales as $sale)
+@foreach ($products as $product)
     <tr>
-        <td>{{ $sale->product_id }}.</td>
-        <td>{{ $sale->product->img_path}}</td>
-        <td>{{ $sale->product->product_name }}</td>
-        <td>¥{{ $sale->product->price }}</td>
-        <td>{{ $sale->product->stock }}</td>
-        <td>{{ $sale->product->id }}</td>
-        <td><button class="list__btn--detail"><a href="{{ route('product_info_detail', ['id'=>$sale->product->id]) }}
+        <td>{{ $product->id }}.</td>
+        <td>{{ $product->img_path}}</td>
+        <td>{{ $product->product_name }}</td>
+        <td>¥{{ $product->price }}</td>
+        <td>{{ $product->stock }}</td>
+        <td>{{ $product->company->company_name }}</td>
+        <td><button class="list__btn--detail"><a href="{{ route('product_info_detail', ['id'=>$product->id]) }}
 ">詳細</a></button></td>
         <td><button class="list__btn--remove">削除</button></td>
     </tr>
