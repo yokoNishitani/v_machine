@@ -18,6 +18,7 @@ class Product extends Model
         'stock',
         'comment',
         'img_path',
+        'img_url',
     ];
 
 

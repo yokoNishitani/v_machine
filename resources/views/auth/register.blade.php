@@ -66,7 +66,7 @@
                         {{ __('新規登録') }}
                     </button>
 
-                    <button>
+                    <button type="button">
                         <a href="{{ route('login') }}">戻る</a>
                     </button>
                 </div>

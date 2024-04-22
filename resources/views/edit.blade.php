@@ -49,7 +49,7 @@
 
     <div>
         <label>コメント</label>
-        <textarea name="comment" value="{{ $product->comment }}"></textarea>
+        <textarea name="comment">{{ $product->comment }}</textarea>
         @if($errors->has('comment'))
         <p>{{ $errors->first('comment') }}</p>
         @endif

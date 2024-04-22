@@ -53,13 +53,13 @@
 
     <div>
         <label>商品画像</label>
-        <input type="file" name="img_path" id="img_path" value="{{ old('img_path') }}">
+        <input type="file" name="img_url" id="img_url" value="{{ old('img_url') }}">
     </div>
 
     <div class=" btn btn__regist">
         <button type="submit">新規登録</button>
 
-        <button><a href="{{ route('list') }}">戻る</a></button>
+        <button type="button"><a href="{{ route('list') }}">戻る</a></button>
     </div>
 
 </form>

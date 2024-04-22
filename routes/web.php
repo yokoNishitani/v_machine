@@ -30,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('product', 'ProductController');
 
 Route::get('/index','ProductController@index')->name('list');
+Route::get('/search','ProductController@search')->name('products.search');
 
 Route::get('/product_info_detail/{id}', [App\Http\Controllers\ProductController::class, 'getId'])->name('product_info_detail');
 
