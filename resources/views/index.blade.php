@@ -5,7 +5,7 @@
 @section('content')
 <h1>商品一覧画面</h1>
 <div class="form__sort">
-    <form action="">
+    <form>
         <input type="text" placeholder="検索キーワード">
         <select name="" id="">
             <option value="メーカー名">メーカー名</option>
