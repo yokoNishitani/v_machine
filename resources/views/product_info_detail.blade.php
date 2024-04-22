@@ -38,7 +38,7 @@
     </table>
 
     <div class="btn btn__detail">
-        <button><a href="{{ route('update', ['id'=>$product->id]) }}">編集</a></button>
+        <button><a href="{{ route('products.edit', ['id'=>$product->id]) }}">編集</a></button>
 
         <button><a href="{{ route('list') }}">戻る</a></button>
     </div>

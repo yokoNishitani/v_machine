@@ -17,13 +17,15 @@
     </div>
 
     <div class="require">
-        <label>メーカー名</label>
-        <select name="company_name" id="company_name" value="{{ old('company_name') }}">
-            @foreach ($products as $product)
-            <option value="{{ $product->company->company_name }}">{{ $product->company->company_name }}</option>
-            @endforeach
-        </select>
-    </div>
+    <label>メーカー名</label>
+    <select name="company_name" id="company_name">
+        @foreach ($companies as $company)
+            <option value="{{ $company->company_name }}" {{ old('company_name') == $company->id ? 'selected' : '' }}>
+                {{ $company->company_name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
     <div class="require">
         <label>価格</label>
@@ -59,6 +61,8 @@
 
         <button><a href="{{ route('list') }}">戻る</a></button>
     </div>
+
 </form>
+
 
 @endsection

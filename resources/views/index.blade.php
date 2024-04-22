@@ -4,18 +4,22 @@
 
 @section('content')
 <h1>商品一覧画面</h1>
-<div class="form__sort">
-    <form>
+
+<form class="form__sort">
+    <div>
         <input type="text" placeholder="検索キーワード">
-        <select name="" id="">
-            <option value="メーカー名">メーカー名</option>
-            @foreach ($products as $product)
-            <option value="{{ $product->company->id }}">{{ $product->company->company_name }}</option>
+        <select name="company_name" id="company_name">
+            <option value="">メーカー名</option>
+            @php
+            $uniqueCompanies = $products->unique('company_id')->pluck('company.company_name');
+            @endphp
+            @foreach ($uniqueCompanies as $companyName)
+            <option value="{{ $companyName }}">{{ $companyName }}</option>
             @endforeach
         </select>
-    </form>
-    <button>検索</button>
-</div>
+    </div>
+    <button type="submit">検索</button>
+</form>
 
 <table class="table__list">
     <tr>
@@ -40,9 +44,16 @@
         <td>{{ $product->company->company_name }}</td>
         <td><button class="list__btn--detail"><a href="{{ route('product_info_detail', ['id'=>$product->id]) }}
 ">詳細</a></button></td>
-        <td><button class="list__btn--remove">削除</button></td>
+        <td>
+            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="list__btn--remove" onclick="return confirm('本当に削除しますか？')">削除</button>
+            </form>
+        </td>
     </tr>
     @endforeach
 </table>
+{{ $products->links('pagination::simple-tailwind') }}
 <script src="{{ asset('js/script.js') }}"></script>
 @endsection

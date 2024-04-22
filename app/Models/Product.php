@@ -11,15 +11,18 @@ class Product extends Model
 {
 
     // use HasFactory;
-    public function getProductRegist()
-    {
-        $products = Product::with(['company'])->get();
-        return view('product_regist')->with('products', $products);
-    }
+
+    protected $fillable = [
+        'product_name',
+        'price',
+        'stock',
+        'comment',
+        'img_path',
+    ];
+
 
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
-
 }

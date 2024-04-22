@@ -27,16 +27,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/index','ProductController@index')->name('list');
+Route::resource('product', 'ProductController');
 
-Route::post('/index', 'ProductController@index')->name('index');
+Route::get('/index','ProductController@index')->name('list');
 
 Route::get('/product_info_detail/{id}', [App\Http\Controllers\ProductController::class, 'getId'])->name('product_info_detail');
 
 Route::get('/product_regist', 'ProductController@add')->name('add');
 Route::post('/product_regist', 'ProductController@create')->name('create');
 
-Route::get('/update/{id}', 'ProductController@getUpdateId')->name('update');
+Route::get('/products/{id}', 'ProductController@show')->name('products.show');
+Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit');
+Route::put('/products/{id}', 'ProductController@update')->name('products.update');
+Route::get('/products/{id}/details', 'ProductController@show')->name('products.details');
 
 
-Route::resource('product', 'ProductController');
+Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy');

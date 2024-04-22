@@ -114,17 +114,17 @@ button {
     margin: 0 auto 50px;
 }
 
-.form__sort form {
+.form__sort div {
     width: 80%;
 }
 
-.form__sort form input,
-.form__sort form select {
+.form__sort div input,
+.form__sort div select {
     padding: 5px;
     width: 40%;
 }
 
-.form__sort form select {
+.form__sort div select {
     margin-left: 10px;
 }
 
@@ -135,7 +135,7 @@ button {
 .table__list {
     border: #333 solid 1px;
     width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
 }
 
 .table__list tr th,
@@ -266,3 +266,4 @@ button {
     display: inline-block;
     color: #dc143c;
 }
+
