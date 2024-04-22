@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('street_address')->nullable();
             $table->string('representative_name')->nullable();
-
             $table->timestamps();
         });
     }

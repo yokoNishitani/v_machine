@@ -3,15 +3,14 @@
 @section('title', '商品新規登録画面')
 
 @section('content')
-<h1 class="h1__register">商品新規登録画面</h1>
+<h1 class="h1__regist">商品新規登録画面</h1>
 
-<form action="{{ route('regist_submit') }}" method="post" class="form__product-register">
+<form action="{{ route('create') }}" method="post" class="form__product-regist">
     @csrf
-
 
     <div class="require">
         <label>商品名</label>
-        <input type="text" name="product_name" value="{{ old('product_name') }}">
+        <input type="text" name="product_name" id="product_name" value="{{ old('product_name') }}">
         @if($errors->has('product_name'))
         <p>{{ $errors->first('product_name') }}</p>
         @endif
@@ -19,16 +18,16 @@
 
     <div class="require">
         <label>メーカー名</label>
-        <select name="company_name" value="{{ old('company_name') }}">
+        <select name="company_name" id="company_name" value="{{ old('company_name') }}">
             @foreach ($products as $product)
-            <option>{{ $product->company->company_name }}</option>
+            <option value="{{ $product->company->company_name }}">{{ $product->company->company_name }}</option>
             @endforeach
         </select>
     </div>
 
     <div class="require">
         <label>価格</label>
-        <input type="text" name="price" value="{{ old('price') }}">
+        <input type="text" name="price" id="price" value="{{ old('price') }}">
         @if($errors->has('price'))
         <p>{{ $errors->first('price') }}</p>
         @endif
@@ -36,7 +35,7 @@
 
     <div class="require">
         <label>在庫数</label>
-        <input type="text" name="stock" value="{{ old('stock') }}">
+        <input type="text" name="stock" id="stock" value="{{ old('stock') }}">
         @if($errors->has('stock'))
         <p>{{ $errors->first('stock') }}</p>
         @endif
@@ -44,18 +43,21 @@
 
     <div>
         <label>コメント</label>
-        <textarea name="comment">{{ old('comment') }}</textarea>
+        <textarea name="comment" id="comment">{{ old('comment') }}</textarea>
+        @if($errors->has('comment'))
+        <p>{{ $errors->first('comment') }}</p>
+        @endif
     </div>
 
     <div>
         <label>商品画像</label>
-        <input type="file" name="img_path" value="{{ old('img_path') }}">
+        <input type="file" name="img_path" id="img_path" value="{{ old('img_path') }}">
     </div>
 
-    <div class=" btn btn__register">
+    <div class=" btn btn__regist">
         <button type="submit">新規登録</button>
 
-        <button><a href="{{ route('product_info_list') }}">戻る</a></button>
+        <button><a href="{{ route('list') }}">戻る</a></button>
     </div>
 </form>
 

@@ -10,20 +10,11 @@ class Company extends Model
 {
     // use HasFactory;
 
+
+
     public function getCompanyList() {
         $companies = DB::table('companies')->get();
         return $companies;
     }
 
-    public function registCompany($data) {
-        // 登録処理
-        DB::table('companies')->insert([
-            'product_name' => $data->product_name,
-            'company_name' => $data->company_name,
-            'price' => $data->price,
-            'stock' => $data->stock,
-            'comment' => $data->comment,
-            'img_path' => $data->img_path,
-        ]);
-    }
 }

@@ -9,18 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
+
     // use HasFactory;
-    
-    public function getProductList()
+    public function getProductRegist()
     {
-        $products = DB::table('products')->get();
-        return $products;
+        $products = Product::with(['company'])->get();
+        return view('product_regist')->with('products', $products);
     }
 
-    public function company():BelongsTo
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
-
 
 }

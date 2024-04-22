@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CompanyController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -27,17 +27,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/product_info_list', [App\Http\Controllers\CompanyController::class, 'ProductInfoList'])->name('product_info_list');
+Route::get('/index','ProductController@index')->name('list');
 
-Route::post('/product_info_list', [App\Http\Controllers\CompanyController::class, 'ProductInfoList'])->name('product_info_list');
+Route::post('/index', 'ProductController@index')->name('index');
 
-Route::get('/product_info_detail/{id}', [App\Http\Controllers\CompanyController::class, 'ProductInfoDetail'])->name('product_info_detail');
+Route::get('/product_info_detail/{id}', [App\Http\Controllers\ProductController::class, 'getId'])->name('product_info_detail');
 
-Route::get('/product_register', [App\Http\Controllers\CompanyController::class, 'ProductRegister'])->name('product_register');
+Route::get('/product_regist', 'ProductController@add')->name('add');
+Route::post('/product_regist', 'ProductController@create')->name('create');
 
-Route::post('/product_register',[App\Http\Controllers\CompanyController::class, 'RegistSubmit'])->name('regist_submit');
-
-
-Route::get('/product_info_editor', [App\Http\Controllers\CompanyController::class, 'ProductInfoEditor'])->name('product_info_editor');
+Route::get('/update/{id}', 'ProductController@getUpdateId')->name('update');
 
 
+Route::resource('product', 'ProductController');

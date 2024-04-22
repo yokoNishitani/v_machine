@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -44,6 +44,6 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        return '/product_info_list';
+        return '/login';
     }
 }

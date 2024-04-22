@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <th>価格</th>
-            <td>{{ $product->price }}</td>
+            <td>¥{{ $product->price }}</td>
         </tr>
         <tr>
             <th>在庫数</th>
@@ -38,9 +38,9 @@
     </table>
 
     <div class="btn btn__detail">
-        <button>編集</button>
+        <button><a href="{{ route('update', ['id'=>$product->id]) }}">編集</a></button>
 
-        <button><a href="{{ route('product_info_list') }}">戻る</a></button>
+        <button><a href="{{ route('list') }}">戻る</a></button>
     </div>
 </div>
 @endsection

@@ -16,21 +16,21 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $users_params = [
-            'user_name' => '鈴木',
+            'name' => '鈴木',
             'email' => 'suzuki@vmachine.com',
             'password' => 'suzukidesu',
         ];
         DB::table('users')->insert($users_params);
 
         $users_params = [
-            'user_name' => '田中',
+            'name' => '田中',
             'email' => 'tanaka@vmachine.com',
             'password' => 'tanakadesu',
         ];
         DB::table('users')->insert($users_params);
 
         $users_params = [
-            'user_name' => '小林',
+            'name' => '小林',
             'email' => 'kobayashi@vmachine.com',
             'password' => 'kobayashidesu',
         ];

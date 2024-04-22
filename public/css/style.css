@@ -105,7 +105,7 @@ button {
     border-radius: 20px;
 }
 
-/* producr_info_list.blade.php */
+/* index.blade.php */
 
 .form__sort {
     display: flex;
@@ -162,41 +162,41 @@ button {
     background-color: #dc143c;
 }
 
-/* product_register.blade.php */
+/* product_regist.blade.php */
 
-.h1__register {
+.h1__regist {
     width: 600px;
 }
 
-.form__product-register {
+.form__product-regist {
     border: #333 solid 1px;
     padding: 50px 50px 20px;
     width: 600px;
     margin: 0 auto 100px;
 }
 
-.form__product-register .require label::after {
+.form__product-regist .require label::after {
     content: "※";
     display: inline-block;
     color: #dc143c;
 }
 
-.form__product-register>div {
+.form__product-regist>div {
     width: 100%;
     display: flex;
     margin-bottom: 30px;
 }
 
-.form__product-register>div label {
+.form__product-regist>div label {
     display: block;
     width: 30%;
     padding: 5px;
     align-items: first baseline;
 }
 
-.form__product-register div input,
-.form__product-register div select,
-.form__product-register div textarea {
+.form__product-regist div input,
+.form__product-regist div select,
+.form__product-regist div textarea {
     width: 50%;
     padding: 5px;
 }
@@ -232,31 +232,37 @@ button {
     width: 40%;
 }
 
-/* product_info_editor.blade.php */
+/* update.blade.php */
 
-.form__editor {
+.form__update {
     border: #333 solid 1px;
     width: 900px;
     margin: 0 auto 50px;
     padding: 50px;
 }
 
-.form__editor div {
+.form__update div {
     width: 100%;
     display: flex;
     margin-bottom: 30px;
 }
 
-.form__editor div label {
+.form__update div label {
     display: block;
     width: 15%;
     padding: 5px;
     align-items: first baseline;
 }
 
-.form__editor div input,
-.form__editor div select,
-.form__editor div textarea {
+.form__update div input,
+.form__update div select,
+.form__update div textarea {
     width: 40%;
     padding: 5px;
+}
+
+.form__update .require label::after {
+    content: "※";
+    display: inline-block;
+    color: #dc143c;
 }
