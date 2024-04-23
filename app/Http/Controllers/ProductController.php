@@ -81,9 +81,6 @@ class ProductController extends Controller
 
         $product->company_id = $company->id;
 
-
-
-
         $product->save();
 
         return redirect(route('create'));
@@ -96,25 +93,25 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(RegistRequest $request)
-{
-    // 画像を取得
-    $image = $request->file('images');
+    {
+        // 画像を取得
+        $image = $request->file('images');
 
-    // 画像をストレージに保存し、そのパスを取得
-    $img_path = $image->store('public/images');
+        // 画像をストレージに保存し、そのパスを取得
+        $img_path = $image->store('public/images');
 
-    // 画像のURLを生成
-    $img_url = asset('storage/' . $img_path);
+        // 画像のURLを生成
+        $img_url = asset('storage/' . $img_path);
 
-    // Productモデルを作成し、データベースに保存
-    Product::create([
-        'img_path' => $img_path,
-        'img_url' => $img_url,
-    ]);
+        // Productモデルを作成し、データベースに保存
+        Product::create([
+            'img_path' => $img_path,
+            'img_url' => $img_url,
+        ]);
 
-    // リダイレクトなどの適切なレスポンスを返す
-    return redirect()->route('index');
-}
+        // リダイレクトなどの適切なレスポンスを返す
+        return redirect()->route('index');
+    }
 
     /**
      * Display the specified resource.

@@ -17,13 +17,18 @@ class Product extends Model
         'price',
         'stock',
         'comment',
-        'img_path',
-        'img_url',
+        'img_path'
     ];
 
 
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function registProduct($image_path){
+        DB::table('products')->insert([
+            'image_path' => $image_path
+        ]);
     }
 }

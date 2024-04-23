@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="h1__regist">商品新規登録画面</h1>
 
-<form action="{{ route('create') }}" method="post" class="form__product-regist">
+<form action="{{ route('create') }}" method="post" class="form__product-regist" enctype='multipart/form-data'>
     @csrf
 
     <div class="require">
@@ -17,15 +17,15 @@
     </div>
 
     <div class="require">
-    <label>メーカー名</label>
-    <select name="company_name" id="company_name">
-        @foreach ($companies as $company)
+        <label>メーカー名</label>
+        <select name="company_name" id="company_name">
+            @foreach ($companies as $company)
             <option value="{{ $company->company_name }}" {{ old('company_name') == $company->id ? 'selected' : '' }}>
                 {{ $company->company_name }}
             </option>
-        @endforeach
-    </select>
-</div>
+            @endforeach
+        </select>
+    </div>
 
     <div class="require">
         <label>価格</label>
