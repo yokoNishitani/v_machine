@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>商品情報編集画面</h1>
-<form action="{{ route('products.update', $product->id) }}" class="form__update" method="POST">
+<form action="{{ route('products.update', $product->id) }}" class="form__update" method="POST" enctype='multipart/form-data'>
     @csrf
     @method('PUT')
     <div>
@@ -57,7 +57,7 @@
 
     <div>
         <label>商品画像</label>
-        <input type="file" name="img_path" value="{{ $product->img_path }}">
+        <input type="file" name="images" value="{{ $product->img_path }}">
     </div>
 
     <div class="btn btn__editor">

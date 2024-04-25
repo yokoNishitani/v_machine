@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Product;
 use App\Http\Requests\RegistRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use RecursiveIterator;
 
 class ProductController extends Controller
@@ -52,6 +53,7 @@ class ProductController extends Controller
         $companies = Company::all();
         return view('product_regist', compact('products', 'companies'));
     }
+
 
     public function store(RegistRequest $request)
     {
@@ -101,28 +103,51 @@ class ProductController extends Controller
         return view('edit', compact('product', 'companies'));
     }
 
+
+
     public function update(RegistRequest $request, $id)
     {
-        // 更新対象の商品を取得
-        $product = Product::find($id);
+        DB::beginTransaction();
+        try {
+            // 更新対象の製品を検索
+            $product = Product::find($id);
 
-        // 商品情報を更新
-        $product->product_name = $request->product_name;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->comment = $request->comment;
-        $product->img_path = $request->img_path;
+            // 画像の処理
+            if ($request->hasFile('images')) {
+                $image = $request->file('images');
+                $file_name = $image->getClientOriginalName();
+                $image->storeAs('public/images', $file_name);
+                $image_path = 'storage/images/' . $file_name;
 
-        // メーカーの情報を取得または作成して関連付ける
-        $company = Company::firstOrCreate(['company_name' => $request->company_name]);
-        $product->company()->associate($company);
+                // 古い画像を削除
+                if ($product->img_path) {
+                    Storage::delete($product->img_path);
+                }
+            } else {
+                // 画像がアップロードされなかった場合は、既存の画像を使用する
+                $image_path = $product->img_path;
+            }
 
-        // 商品を保存
-        $product->save();
+            // 製品情報を更新
+            $product->product_name = $request->product_name;
+            $product->price = $request->price;
+            $product->stock = $request->stock;
+            $product->comment = $request->comment;
+            $product->img_path = $image_path;
 
-        // 更新後の商品詳細ページにリダイレクト
+            $company = Company::where('company_name', $request->company_name)->first();
+            $product->company()->associate($company);
+
+            $product->save();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back();
+        }
         return redirect()->route('products.details', $product->id);
     }
+
 
     public function destroy($id)
     {
