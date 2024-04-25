@@ -124,11 +124,9 @@ class ProductController extends Controller
                     Storage::delete($product->img_path);
                 }
             } else {
-                // 画像がアップロードされなかった場合は、既存の画像を使用する
-                $image_path = $product->img_path;
+                $image_path = null;
             }
 
-            // 製品情報を更新
             $product->product_name = $request->product_name;
             $product->price = $request->price;
             $product->stock = $request->stock;
