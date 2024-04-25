@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="h1__regist">商品新規登録画面</h1>
 
-<form action="{{ route('create') }}" method="post" class="form__product-regist" enctype='multipart/form-data'>
+<form action="{{ route('store') }}" method="post" class="form__product-regist" enctype='multipart/form-data'>
     @csrf
 
     <div class="require">
@@ -53,7 +53,7 @@
 
     <div>
         <label>商品画像</label>
-        <input type="file" name="img_url" id="img_url" value="{{ old('img_url') }}">
+        <input type="file" name="images" id="images" value="{{ old('images') }}">
     </div>
 
     <div class=" btn btn__regist">

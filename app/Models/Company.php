@@ -8,13 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class Company extends Model
 {
-    // use HasFactory;
-
-
-
     public function getCompanyList() {
         $companies = DB::table('companies')->get();
         return $companies;
     }
-
 }

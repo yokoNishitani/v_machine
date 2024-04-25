@@ -35,7 +35,7 @@ Route::get('/search','ProductController@search')->name('products.search');
 Route::get('/product_info_detail/{id}', [App\Http\Controllers\ProductController::class, 'getId'])->name('product_info_detail');
 
 Route::get('/product_regist', 'ProductController@add')->name('add');
-Route::post('/product_regist', 'ProductController@create')->name('create');
+Route::post('/product_regist', 'ProductController@store')->name('store');
 
 Route::get('/products/{id}', 'ProductController@show')->name('products.show');
 Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit');

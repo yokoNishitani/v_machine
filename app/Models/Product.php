@@ -20,7 +20,6 @@ class Product extends Model
         'img_path'
     ];
 
-
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);

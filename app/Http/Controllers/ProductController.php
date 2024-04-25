@@ -11,11 +11,6 @@ use RecursiveIterator;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Product::with(['company'])->get();
@@ -24,11 +19,9 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        // キーワードとメーカー名を取得
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
 
-        // クエリを組み立てて検索
         $query = Product::query();
 
         if ($keyword) {
@@ -41,7 +34,6 @@ class ProductController extends Controller
             });
         }
 
-        // 検索結果を取得
         $products = $query->get();
 
         return view('index', ['products' => $products]);
@@ -61,64 +53,39 @@ class ProductController extends Controller
         return view('product_regist', compact('products', 'companies'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(RegistRequest $request)
-    {
-        $product = new Product();
-
-        $product->product_name = $request->product_name;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->comment = $request->comment;
-        $product->img_path = $request->img_path;
-        $product->img_url = $request->img_url;
-
-        $company = Company::where('company_name', $request->company_name)->first();
-
-        $product->company_id = $company->id;
-
-        $product->save();
-
-        return redirect(route('create'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(RegistRequest $request)
     {
-        // 画像を取得
-        $image = $request->file('images');
+        DB::beginTransaction();
+        try {
+            if ($request->hasFile('images')) {
+                $image = $request->file('images');
+                $file_name = $image->getClientOriginalName();
+                $image->storeAs('public/images', $file_name);
+                $image_path = 'storage/images/' . $file_name;
+            } else {
+                $image_path = null;
+            }
 
-        // 画像をストレージに保存し、そのパスを取得
-        $img_path = $image->store('public/images');
+            $product = new Product();
+            $product->product_name = $request->product_name;
+            $product->price = $request->price;
+            $product->stock = $request->stock;
+            $product->comment = $request->comment;
+            $product->img_path = $image_path;
 
-        // 画像のURLを生成
-        $img_url = asset('storage/' . $img_path);
+            $company = Company::where('company_name', $request->company_name)->first();
+            $product->company()->associate($company);
 
-        // Productモデルを作成し、データベースに保存
-        Product::create([
-            'img_path' => $img_path,
-            'img_url' => $img_url,
-        ]);
+            $product->save();
 
-        // リダイレクトなどの適切なレスポンスを返す
-        return redirect()->route('index');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back();
+        }
+        return redirect(route('add'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $model = new Product();
@@ -127,12 +94,6 @@ class ProductController extends Controller
         return view('edit', compact('product', 'companies'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $product = Product::findOrFail($id);
@@ -140,13 +101,6 @@ class ProductController extends Controller
         return view('edit', compact('product', 'companies'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(RegistRequest $request, $id)
     {
         // 更新対象の商品を取得
@@ -158,7 +112,6 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->comment = $request->comment;
         $product->img_path = $request->img_path;
-        $product->img_url = $request->img_url;
 
         // メーカーの情報を取得または作成して関連付ける
         $company = Company::firstOrCreate(['company_name' => $request->company_name]);
@@ -170,13 +123,6 @@ class ProductController extends Controller
         // 更新後の商品詳細ページにリダイレクト
         return redirect()->route('products.details', $product->id);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function destroy($id)
     {
