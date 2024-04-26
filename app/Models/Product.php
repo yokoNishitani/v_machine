@@ -9,17 +9,21 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'product_name',
+        'price',
+        'stock',
+        'comment',
+        'img_path'
+    ];
 
-    // use HasFactory;
-    public function getProductRegist()
-    {
-        $products = Product::with(['company'])->get();
-        return view('product_regist')->with('products', $products);
-    }
-
-    public function company(): BelongsTo
-    {
+    public function company(): BelongsTo {
         return $this->belongsTo(Company::class);
     }
 
+    public function registProduct($image_path) {
+        DB::table('products')->insert([
+            'image_path' => $image_path
+        ]);
+    }
 }

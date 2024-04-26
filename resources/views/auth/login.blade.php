@@ -43,7 +43,7 @@
 
                         <div>
                             <div class="btn btn__login">
-                                <button>
+                                <button type="button">
                                     <a href="{{ route('register') }}">新規作成</a>
                                 </button>
 

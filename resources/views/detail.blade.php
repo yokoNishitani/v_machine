@@ -13,7 +13,9 @@
         </tr>
         <tr>
             <th>商品画像</th>
-            <td>{{ $product->img_path }}</td>
+            <td>@if ($product->img_path)
+                <img src="{{ asset($product->img_path) }}" alt="Image" width="80" height="auto">
+            @endif</td>
         </tr>
         <tr>
             <th>商品名</th>
@@ -38,9 +40,9 @@
     </table>
 
     <div class="btn btn__detail">
-        <button><a href="{{ route('update', ['id'=>$product->id]) }}">編集</a></button>
+        <button type="button"><a href="{{ route('products.edit', ['id'=>$product->id]) }}">編集</a></button>
 
-        <button><a href="{{ route('list') }}">戻る</a></button>
+        <button type="button"><a href="{{ route('products.list') }}">戻る</a></button>
     </div>
 </div>
 @endsection

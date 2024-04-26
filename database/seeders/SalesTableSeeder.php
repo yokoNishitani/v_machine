@@ -13,8 +13,7 @@ class SalesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $sales_params = [
             'id' => 1,
             'product_id' => 1,

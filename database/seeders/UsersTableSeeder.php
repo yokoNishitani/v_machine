@@ -13,8 +13,7 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $users_params = [
             'name' => '鈴木',
             'email' => 'suzuki@vmachine.com',

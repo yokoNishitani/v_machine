@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="h1__regist">商品新規登録画面</h1>
 
-<form action="{{ route('create') }}" method="post" class="form__product-regist">
+<form action="{{ route('products.store') }}" method="post" class="form__product-regist" enctype='multipart/form-data'>
     @csrf
 
     <div class="require">
@@ -18,9 +18,11 @@
 
     <div class="require">
         <label>メーカー名</label>
-        <select name="company_name" id="company_name" value="{{ old('company_name') }}">
-            @foreach ($products as $product)
-            <option value="{{ $product->company->company_name }}">{{ $product->company->company_name }}</option>
+        <select name="company_name" id="company_name">
+            @foreach ($companies as $company)
+            <option value="{{ $company->company_name }}" {{ old('company_name') == $company->id ? 'selected' : '' }}>
+                {{ $company->company_name }}
+            </option>
             @endforeach
         </select>
     </div>
@@ -51,14 +53,13 @@
 
     <div>
         <label>商品画像</label>
-        <input type="file" name="img_path" id="img_path" value="{{ old('img_path') }}">
+        <input type="file" name="images" id="images" value="{{ old('images') }}">
     </div>
 
     <div class=" btn btn__regist">
         <button type="submit">新規登録</button>
 
-        <button><a href="{{ route('list') }}">戻る</a></button>
+        <button type="button"><a href="{{ route('products.list') }}">戻る</a></button>
     </div>
 </form>
-
 @endsection

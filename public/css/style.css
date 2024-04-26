@@ -15,6 +15,15 @@ h1 {
     margin: 50px auto;
 }
 
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:visited {
+    color: #4b0082;
+}
+
 button {
     border-radius: 5px;
     padding: 5px 10px;
@@ -80,10 +89,9 @@ button {
     border-radius: 20px;
 }
 
-
-
 /* register.blade.php */
 .h1__register {
+    width: 500px;
     text-align: center;
 }
 
@@ -114,17 +122,17 @@ button {
     margin: 0 auto 50px;
 }
 
-.form__sort form {
+.form__sort div {
     width: 80%;
 }
 
-.form__sort form input,
-.form__sort form select {
+.form__sort div input,
+.form__sort div select {
     padding: 5px;
     width: 40%;
 }
 
-.form__sort form select {
+.form__sort div select {
     margin-left: 10px;
 }
 
@@ -135,7 +143,7 @@ button {
 .table__list {
     border: #333 solid 1px;
     width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
 }
 
 .table__list tr th,

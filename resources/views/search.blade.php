@@ -34,23 +34,16 @@
         </th>
     </tr>
 
-
     @foreach ($products as $product)
     <tr>
         <td>{{ $product->id }}.</td>
-        <td>@if ($product->img_path)
-            <img src="{{ asset($product->img_path) }}" alt="Image" width="30" height="auto">
-            @endif
-        </td>
+        <td>{{ $product->img_path}}</td>
         <td>{{ $product->product_name }}</td>
         <td>¥{{ $product->price }}</td>
         <td>{{ $product->stock }}</td>
         <td>{{ $product->company->company_name }}</td>
-        <td>
-            <button class="list__btn--detail" type="button">
-                <a href="{{ route('products.detail', ['id'=>$product->id]) }}">詳細</a>
-            </button>
-        </td>
+        <td><button class="list__btn--detail"><a href="{{ route('products.detail', ['id'=>$product->id]) }}
+">詳細</a></button></td>
         <td>
             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                 @csrf
