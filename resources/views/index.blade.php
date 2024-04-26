@@ -9,7 +9,7 @@
     <div>
         <input type="text" name="keyword" placeholder="検索キーワード">
         <select name="company_name" id="company_name">
-            <option value="">メーカー名</option>
+            <option>メーカー名</option>
             @php
             $uniqueCompanies = $products->unique('company_id')->pluck('company.company_name');
             @endphp

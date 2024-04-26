@@ -12,11 +12,13 @@ use RecursiveIterator;
 
 class ProductController extends Controller
 {
+    // 一覧画面
     public function index() {
         $products = Product::with(['company'])->get();
         return view('index', ['products' => $products]);
     }
 
+    // 検索
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
@@ -38,18 +40,21 @@ class ProductController extends Controller
         return view('index', ['products' => $products]);
     }
 
+    // 詳細画面
     public function getId($id) {
         $model = new Product();
         $product = $model::find($id);
         return view('detail', compact('product'));
     }
 
+    // 新規登録画面
     public function add(Request $request) {
         $products = Product::with(['company'])->get();
         $companies = Company::all();
         return view('product_regist', compact('products', 'companies'));
     }
 
+    // 新規登録
     public function store(RegistRequest $request) {
         DB::beginTransaction();
         try {
@@ -83,6 +88,7 @@ class ProductController extends Controller
         return redirect(route('products.add'));
     }
 
+    // 編集画面（商品情報の取得）
     public function show($id) {
         $model = new Product();
         $product = $model::find($id);
@@ -90,12 +96,14 @@ class ProductController extends Controller
         return view('edit', compact('product', 'companies'));
     }
 
+    // 編集画面（表示）
     public function edit($id) {
         $product = Product::findOrFail($id);
         $companies = Company::all();
         return view('edit', compact('product', 'companies'));
     }
 
+    // 更新
     public function update(RegistRequest $request, $id) {
         DB::beginTransaction();
         try {
@@ -138,6 +146,7 @@ class ProductController extends Controller
         return redirect()->route('products.details', $product->id);
     }
 
+    // 削除
     public function destroy($id) {
         $product = Product::find($id);
         $product->delete();
