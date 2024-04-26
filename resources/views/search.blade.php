@@ -30,7 +30,7 @@
         <th>在庫数</th>
         <th>メーカー名</th>
         <th colspan="2">
-            <button><a href="{{ route('add') }}">新規登録</a></button>
+            <button><a href="{{ route('products.add') }}">新規登録</a></button>
         </th>
     </tr>
 
@@ -42,7 +42,7 @@
         <td>¥{{ $product->price }}</td>
         <td>{{ $product->stock }}</td>
         <td>{{ $product->company->company_name }}</td>
-        <td><button class="list__btn--detail"><a href="{{ route('product_info_detail', ['id'=>$product->id]) }}
+        <td><button class="list__btn--detail"><a href="{{ route('products.detail', ['id'=>$product->id]) }}
 ">詳細</a></button></td>
         <td>
             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
@@ -54,6 +54,5 @@
     </tr>
     @endforeach
 </table>
-<button type="button"><a href="{{ route('index') }}">戻る</a></button>
 <script src="{{ asset('js/script.js') }}"></script>
 @endsection

@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="h1__regist">商品新規登録画面</h1>
 
-<form action="{{ route('store') }}" method="post" class="form__product-regist" enctype='multipart/form-data'>
+<form action="{{ route('products.store') }}" method="post" class="form__product-regist" enctype='multipart/form-data'>
     @csrf
 
     <div class="require">
@@ -59,10 +59,7 @@
     <div class=" btn btn__regist">
         <button type="submit">新規登録</button>
 
-        <button type="button"><a href="{{ route('list') }}">戻る</a></button>
+        <button type="button"><a href="{{ route('products.list') }}">戻る</a></button>
     </div>
-
 </form>
-
-
 @endsection

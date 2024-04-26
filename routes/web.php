@@ -27,20 +27,26 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('product', 'ProductController');
+// 一覧
+Route::get('/index','ProductController@index')->name('products.list');
 
-Route::get('/index','ProductController@index')->name('list');
+// 検索
 Route::get('/search','ProductController@search')->name('products.search');
 
-Route::get('/product_info_detail/{id}', [App\Http\Controllers\ProductController::class, 'getId'])->name('product_info_detail');
+// 詳細
+Route::get('/detail/{id}', 'ProductController@getId')->name('products.detail');
 
-Route::get('/product_regist', 'ProductController@add')->name('add');
-Route::post('/product_regist', 'ProductController@store')->name('store');
+// 新規登録
+Route::get('/product_regist', 'ProductController@add')->name('products.add');
+Route::post('/product_regist', 'ProductController@store')->name('products.store');
 
+// 編集
 Route::get('/products/{id}', 'ProductController@show')->name('products.show');
 Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit');
+
+// 更新
 Route::put('/products/{id}', 'ProductController@update')->name('products.update');
 Route::get('/products/{id}/details', 'ProductController@show')->name('products.details');
 
-
+// 削除
 Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy');

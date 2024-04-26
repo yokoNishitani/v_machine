@@ -63,8 +63,7 @@
     <div class="btn btn__editor">
         <button type="submit">更新</button>
 
-        <button type="button"><a href="{{ route('product_info_detail', ['id'=>$product->id]) }}">戻る</a></button>
+        <button type="button"><a href="{{ route('products.detail', ['id'=>$product->id]) }}">戻る</a></button>
     </div>
-
 </form>
 @endsection

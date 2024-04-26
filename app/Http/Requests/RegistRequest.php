@@ -11,8 +11,7 @@ class RegistRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,8 +20,7 @@ class RegistRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'product_name' => 'required',
             'company_name' => 'required',
@@ -31,8 +29,7 @@ class RegistRequest extends FormRequest
         ];
     }
 
-    public function attributes()
-    {
+    public function attributes() {
         return [
             'product_name' => '商品名',
             'company_name' => 'メーカー名',

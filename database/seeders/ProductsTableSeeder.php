@@ -13,8 +13,7 @@ class ProductsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $products_params = [
             'id' => 1,
             'company_id' => 1,
@@ -41,6 +40,5 @@ class ProductsTableSeeder extends Seeder
             'stock' => 12
         ];
         DB::table('products')->insert($products_params);
-
     }
 }

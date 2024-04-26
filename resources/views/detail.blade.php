@@ -42,7 +42,7 @@
     <div class="btn btn__detail">
         <button type="button"><a href="{{ route('products.edit', ['id'=>$product->id]) }}">編集</a></button>
 
-        <button type="button"><a href="{{ route('list') }}">戻る</a></button>
+        <button type="button"><a href="{{ route('products.list') }}">戻る</a></button>
     </div>
 </div>
 @endsection

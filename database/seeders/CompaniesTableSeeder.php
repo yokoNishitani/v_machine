@@ -13,8 +13,7 @@ class CompaniesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $companies_params = [
             'id' => 1,
             'company_name' => 'サントリー',

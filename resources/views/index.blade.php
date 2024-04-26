@@ -30,7 +30,7 @@
         <th>在庫数</th>
         <th>メーカー名</th>
         <th colspan="2">
-            <button><a href="{{ route('add') }}">新規登録</a></button>
+            <button><a href="{{ route('products.add') }}">新規登録</a></button>
         </th>
     </tr>
 
@@ -39,15 +39,16 @@
     <tr>
         <td>{{ $product->id }}.</td>
         <td>@if ($product->img_path)
-                <img src="{{ asset($product->img_path) }}" alt="Image" width="80" height="auto">
-            @endif</td>
+            <img src="{{ asset($product->img_path) }}" alt="Image" width="30" height="auto">
+            @endif
+        </td>
         <td>{{ $product->product_name }}</td>
         <td>¥{{ $product->price }}</td>
         <td>{{ $product->stock }}</td>
         <td>{{ $product->company->company_name }}</td>
         <td>
             <button class="list__btn--detail" type="button">
-                <a href="{{ route('product_info_detail', ['id'=>$product->id]) }}">詳細</a>
+                <a href="{{ route('products.detail', ['id'=>$product->id]) }}">詳細</a>
             </button>
         </td>
         <td>

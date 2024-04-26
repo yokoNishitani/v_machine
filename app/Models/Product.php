@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
-
-    // use HasFactory;
-
     protected $fillable = [
         'product_name',
         'price',
@@ -20,12 +17,11 @@ class Product extends Model
         'img_path'
     ];
 
-    public function company(): BelongsTo
-    {
+    public function company(): BelongsTo {
         return $this->belongsTo(Company::class);
     }
 
-    public function registProduct($image_path){
+    public function registProduct($image_path) {
         DB::table('products')->insert([
             'image_path' => $image_path
         ]);

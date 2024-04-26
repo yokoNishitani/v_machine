@@ -12,14 +12,12 @@ use RecursiveIterator;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $products = Product::with(['company'])->get();
         return view('index', ['products' => $products]);
     }
 
-    public function search(Request $request)
-    {
+    public function search(Request $request) {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
 
@@ -40,23 +38,19 @@ class ProductController extends Controller
         return view('index', ['products' => $products]);
     }
 
-    public function getId($id)
-    {
+    public function getId($id) {
         $model = new Product();
         $product = $model::find($id);
-        return view('product_info_detail', compact('product'));
+        return view('detail', compact('product'));
     }
 
-    public function add(Request $request)
-    {
+    public function add(Request $request) {
         $products = Product::with(['company'])->get();
         $companies = Company::all();
         return view('product_regist', compact('products', 'companies'));
     }
 
-
-    public function store(RegistRequest $request)
-    {
+    public function store(RegistRequest $request) {
         DB::beginTransaction();
         try {
             if ($request->hasFile('images')) {
@@ -85,28 +79,24 @@ class ProductController extends Controller
             DB::rollBack();
             return back();
         }
-        return redirect(route('add'));
+
+        return redirect(route('products.add'));
     }
 
-    public function show($id)
-    {
+    public function show($id) {
         $model = new Product();
         $product = $model::find($id);
         $companies = Company::all();
         return view('edit', compact('product', 'companies'));
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $product = Product::findOrFail($id);
         $companies = Company::all();
         return view('edit', compact('product', 'companies'));
     }
 
-
-
-    public function update(RegistRequest $request, $id)
-    {
+    public function update(RegistRequest $request, $id) {
         DB::beginTransaction();
         try {
             // 更新対象の製品を検索
@@ -124,7 +114,8 @@ class ProductController extends Controller
                     Storage::delete($product->img_path);
                 }
             } else {
-                $image_path = null;
+                // 画像がアップロードされなかった場合は、既存の画像を使用する
+                $image_path = $product->img_path;
             }
 
             $product->product_name = $request->product_name;
@@ -143,12 +134,11 @@ class ProductController extends Controller
             DB::rollBack();
             return back();
         }
+
         return redirect()->route('products.details', $product->id);
     }
 
-
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $product = Product::find($id);
         $product->delete();
         return redirect('index');
