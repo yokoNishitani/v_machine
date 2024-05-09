@@ -7,9 +7,9 @@
 <form action="{{ route('products.update', $product->id) }}" class="form__update" method="POST" enctype='multipart/form-data'>
     @csrf
     @method('PUT')
-    <div>
+    <div class="update-id">
         <label>ID</label>
-        <input type="text" name="id" value="{{ $product->id }}">
+        <p>{{ $product->id }}</p>
     </div>
 
     <div class="require">
