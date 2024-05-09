@@ -20,6 +20,8 @@ class ProductController extends Controller
 
     // 検索
     public function search(Request $request) {
+        dd($request->input('company_name'));
+
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
 
@@ -148,8 +150,12 @@ class ProductController extends Controller
 
     // 削除
     public function destroy($id) {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect('index');
+        try {
+            $product = Product::findOrFail($id);
+            $product->delete();
+            return redirect()->route('products.list');
+        } catch (\Exception $e) {
+            return back();
+        }
     }
 }
