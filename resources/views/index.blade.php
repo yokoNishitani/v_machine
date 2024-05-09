@@ -37,7 +37,7 @@
 
     @foreach ($products as $product)
     <tr>
-        <td>{{ $product->id }}.</td>
+        <td>{{ $product->id }}</td>
         <td>@if ($product->img_path)
             <img src="{{ asset($product->img_path) }}" alt="Image" width="30" height="auto">
             @endif

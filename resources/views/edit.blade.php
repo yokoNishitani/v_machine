@@ -9,7 +9,7 @@
     @method('PUT')
     <div>
         <label>ID</label>
-        <input type="text" name="id" value="{{ $product->id }}.">
+        <input type="text" name="id" value="{{ $product->id }}">
     </div>
 
     <div class="require">
