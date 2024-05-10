@@ -31,7 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/index','ProductController@index')->name('products.list');
 
 // 検索
-Route::get('/search','ProductController@search')->name('products.search');
+Route::post('/search','ProductController@search')->name('products.search');
 
 // 詳細
 Route::get('/detail/{id}', 'ProductController@getId')->name('products.detail');
@@ -50,3 +50,5 @@ Route::get('/products/{id}/details', 'ProductController@show')->name('products.d
 
 // 削除
 Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy');
+
+

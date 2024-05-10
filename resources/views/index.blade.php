@@ -5,7 +5,9 @@
 @section('content')
 <h1>商品一覧画面</h1>
 
-<form class="form__sort" action="{{ route('products.search') }}" method="GET">
+<form class="form__sort" action="{{ route('products.search') }}" method="POST">
+    @csrf
+
     <div>
         <input type="text" name="keyword" placeholder="検索キーワード">
         <select name="company_name" id="company_name">
@@ -55,7 +57,7 @@
             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="list__btn--remove" onclick="return confirm('本当に削除しますか？')">削除</button>
+                <button type="submit" class="list__btn--remove">削除</button>
             </form>
         </td>
     </tr>

@@ -20,28 +20,29 @@ class ProductController extends Controller
 
     // 検索
     public function search(Request $request) {
-        dd($request->input('company_name'));
-
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
-
+    
         $query = Product::query();
-
+    
         if ($keyword) {
-            $query->where('product_name', 'like', '%' . $keyword . '%');
+            $query->where('product_name', 'like', '%' . $keyword . '%')->get();
         }
-
+    
         if ($companyName) {
             $query->whereHas('company', function ($query) use ($companyName) {
                 $query->where('company_name', $companyName);
             });
         }
-
+    
         $products = $query->get();
+    
+        return view('search', ['products' => $products]);
 
-        return view('index', ['products' => $products]);
+        
     }
 
+    
     // 詳細画面
     public function getId($id) {
         $model = new Product();
