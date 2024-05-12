@@ -5,13 +5,11 @@
 @section('content')
 <h1>商品一覧画面</h1>
 
-<form class="form__sort" action="{{ route('products.search') }}" method="POST">
-    @csrf
-
+<form class="form__sort" action="{{ route('products.search') }}" method="get">
     <div>
         <input type="text" name="keyword" placeholder="検索キーワード">
         <select name="company_name" id="company_name">
-            <option>メーカー名</option>
+            <option value="">メーカー名</option>
             @php
             $uniqueCompanies = $products->unique('company_id')->pluck('company.company_name');
             @endphp
@@ -57,7 +55,7 @@
             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="list__btn--remove">削除</button>
+                <button type="submit" class="list__btn--remove"  onclick="return confirm('本当に削除しますか？')">削除</button>
             </form>
         </td>
     </tr>
