@@ -7,9 +7,9 @@
 <form action="{{ route('products.update', $product->id) }}" class="form__update" method="POST" enctype='multipart/form-data'>
     @csrf
     @method('PUT')
-    <div>
+    <div class="update-id">
         <label>ID</label>
-        <input type="text" name="id" value="{{ $product->id }}.">
+        <p>{{ $product->id }}</p>
     </div>
 
     <div class="require">
@@ -63,7 +63,9 @@
     <div class="btn btn__editor">
         <button type="submit">更新</button>
 
-        <button type="button"><a href="{{ route('products.detail', ['id'=>$product->id]) }}">戻る</a></button>
+        <button type="button">
+            <a href="{{ route('products.detail', ['id'=>$product->id]) }}">戻る</a>
+        </button>
     </div>
 </form>
 @endsection

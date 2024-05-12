@@ -5,7 +5,7 @@
 @section('content')
 <h1>商品一覧画面</h1>
 
-<form class="form__sort" action="{{ route('products.search') }}" method="GET">
+<form class="form__sort" action="{{ route('products.search') }}" method="get">
     <div>
         <input type="text" name="keyword" placeholder="検索キーワード">
         <select name="company_name" id="company_name">
@@ -37,7 +37,7 @@
 
     @foreach ($products as $product)
     <tr>
-        <td>{{ $product->id }}.</td>
+        <td>{{ $product->id }}</td>
         <td>@if ($product->img_path)
             <img src="{{ asset($product->img_path) }}" alt="Image" width="30" height="auto">
             @endif
@@ -55,7 +55,7 @@
             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="list__btn--remove" onclick="return confirm('本当に削除しますか？')">削除</button>
+                <button type="submit" class="list__btn--remove"  onclick="return confirm('本当に削除しますか？')">削除</button>
             </form>
         </td>
     </tr>

@@ -12,12 +12,16 @@ use RecursiveIterator;
 
 class ProductController extends Controller
 {
-    public function index() {
+    // 一覧画面
+    public function index()
+    {
         $products = Product::with(['company'])->get();
         return view('index', ['products' => $products]);
     }
 
-    public function search(Request $request) {
+    // 検索
+    public function search(Request $request)
+    {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
 
@@ -35,22 +39,29 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        return view('index', ['products' => $products]);
+        return view('search', ['products' => $products]);
     }
 
-    public function getId($id) {
+
+    // 詳細画面
+    public function getId($id)
+    {
         $model = new Product();
         $product = $model::find($id);
         return view('detail', compact('product'));
     }
 
-    public function add(Request $request) {
+    // 新規登録画面
+    public function add(Request $request)
+    {
         $products = Product::with(['company'])->get();
         $companies = Company::all();
         return view('product_regist', compact('products', 'companies'));
     }
 
-    public function store(RegistRequest $request) {
+    // 新規登録
+    public function store(RegistRequest $request)
+    {
         DB::beginTransaction();
         try {
             if ($request->hasFile('images')) {
@@ -83,20 +94,26 @@ class ProductController extends Controller
         return redirect(route('products.add'));
     }
 
-    public function show($id) {
+    // 編集画面（商品情報の取得）
+    public function show($id)
+    {
         $model = new Product();
         $product = $model::find($id);
         $companies = Company::all();
         return view('edit', compact('product', 'companies'));
     }
 
-    public function edit($id) {
+    // 編集画面（表示）
+    public function edit($id)
+    {
         $product = Product::findOrFail($id);
         $companies = Company::all();
         return view('edit', compact('product', 'companies'));
     }
 
-    public function update(RegistRequest $request, $id) {
+    // 更新
+    public function update(RegistRequest $request, $id)
+    {
         DB::beginTransaction();
         try {
             // 更新対象の製品を検索
@@ -138,9 +155,15 @@ class ProductController extends Controller
         return redirect()->route('products.details', $product->id);
     }
 
-    public function destroy($id) {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect('index');
+    // 削除
+    public function destroy($id)
+    {
+        try {
+            $product = Product::findOrFail($id);
+            $product->delete();
+            return redirect()->route('products.list');
+        } catch (\Exception $e) {
+            return back();
+        }
     }
 }

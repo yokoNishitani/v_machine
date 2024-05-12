@@ -9,7 +9,7 @@
     <table class="table__detail">
         <tr>
             <th>ID</th>
-            <td>{{ $product->id }}.</td>
+            <td>{{ $product->id }}</td>
         </tr>
         <tr>
             <th>商品画像</th>

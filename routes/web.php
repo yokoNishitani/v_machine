@@ -50,3 +50,5 @@ Route::get('/products/{id}/details', 'ProductController@show')->name('products.d
 
 // 削除
 Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy');
+
+

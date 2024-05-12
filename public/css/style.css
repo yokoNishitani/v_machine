@@ -24,6 +24,11 @@ a:visited {
     color: #4b0082;
 }
 
+label,
+p {
+    color: #333;
+}
+
 button {
     border-radius: 5px;
     padding: 5px 10px;
@@ -209,7 +214,7 @@ button {
     padding: 5px;
 }
 
-/* product_info_detail.blade.php */
+/* detail.blade.php */
 
 .table__detail--wrap {
     border: #333 solid 1px;
@@ -240,7 +245,7 @@ button {
     width: 40%;
 }
 
-/* update.blade.php */
+/* edit.blade.php */
 
 .form__update {
     border: #333 solid 1px;
@@ -273,4 +278,9 @@ button {
     content: "※";
     display: inline-block;
     color: #dc143c;
+}
+
+.update-id p {
+    display: block;
+    padding: 5px;
 }
