@@ -158,7 +158,7 @@ button {
     text-align: center;
 }
 
-.table__list tr:first-child button {
+.table__list thead tr button {
     background-color: #ed6d35;
 }
 

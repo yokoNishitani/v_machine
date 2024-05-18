@@ -22,24 +22,24 @@ class ProductController extends Controller
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
-
+    
         $query = Product::query();
-
+    
         if ($keyword) {
             $query->where('product_name', 'like', '%' . $keyword . '%');
         }
-
+    
         if ($companyName) {
             $query->whereHas('company', function ($query) use ($companyName) {
                 $query->where('company_name', $companyName);
             });
         }
-
-        $products = $query->get();
-
-        return view('search', ['products' => $products]);
+    
+        $products = $query->with('company')->get();
+    
+        return response()->json(['products' => $products]);
     }
-
+    
 
     // 詳細画面
     public function getId($id) {
