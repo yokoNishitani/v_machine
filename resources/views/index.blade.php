@@ -71,6 +71,7 @@ var assetBaseUrl = "{{ asset('') }}";
     var searchUrl = "{{ route('products.search') }}";
     var detailUrlBase = "{{ route('products.detail', ['id' => ':id']) }}";
     var destroyUrlBase = "{{ route('products.destroy', ['id' => ':id']) }}";
+    var csrfToken = '{{ csrf_token() }}';
 </script>
 <script src="{{ asset('js/script.js') }}"></script>
 @endsection
