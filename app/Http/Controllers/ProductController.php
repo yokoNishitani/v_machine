@@ -22,6 +22,10 @@ class ProductController extends Controller
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
+        $priceMin = $request->input('price_min'); // 価格の下限を取得
+        $priceMax = $request->input('price_max'); // 価格の上限を取得
+        $stockMin = $request->input('stock_min'); // 在庫数の下限を取得
+        $stockMax = $request->input('stock_max'); // 在庫数の上限を取得
     
         $query = Product::query();
     
@@ -33,6 +37,22 @@ class ProductController extends Controller
             $query->whereHas('company', function ($query) use ($companyName) {
                 $query->where('company_name', $companyName);
             });
+        }
+    
+        if ($priceMin) {
+            $query->where('price', '>=', $priceMin);
+        }
+    
+        if ($priceMax) {
+            $query->where('price', '<=', $priceMax);
+        }
+    
+        if ($stockMin) {
+            $query->where('stock', '>=', $stockMin);
+        }
+    
+        if ($stockMax) {
+            $query->where('stock', '<=', $stockMax);
         }
     
         $products = $query->with('company')->get();

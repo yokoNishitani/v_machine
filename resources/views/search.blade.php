@@ -17,9 +17,14 @@
             <option value="{{ $companyName }}">{{ $companyName }}</option>
             @endforeach
         </select>
+        <input type="number" id="price_min" name="price_min" placeholder="価格の下限">
+        <input type="number" id="price_max" name="price_max" placeholder="価格の上限">
+        <input type="number" id="stock_min" name="stock_min" placeholder="在庫数の下限">
+        <input type="number" id="stock_max" name="stock_max" placeholder="在庫数の上限">
     </div>
     <button type="button" id="search-button" data-search-url="{{ route('products.search') }}">検索</button>
-v
+</form>
+
 
 </form>
 
@@ -65,6 +70,7 @@ v
         @endforeach
     </tbody>
 </table>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     var assetBaseUrl = "{{ asset('') }}";
