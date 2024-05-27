@@ -62,15 +62,14 @@
             <td>{{ $product->company->company_name }}</td>
             <td>
                 <button class="list__btn--detail" type="button">
-                    <a href="{{ route('products.detail', ['id'=>$product->id]) }}">詳細</a>
+                    <a href="{{ route('products.detail', ['id' => $product->id]) }}">詳細</a>
                 </button>
-
             </td>
             <td>
-                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="delete-form">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="list__btn--remove" onclick="return confirm('本当に削除しますか？')">削除</button>
+                    <button type="submit" class="list__btn--remove">削除</button>
                 </form>
             </td>
         </tr>

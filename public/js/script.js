@@ -60,4 +60,29 @@ $(document).ready(function () {
             }
         });
     });
+    $(document).on('submit', '.delete-form', function (e) {
+        e.preventDefault();
+        
+        var form = $(this);
+        var url = form.attr('action');
+        var row = form.closest('tr');
+        
+        if (confirm('本当に削除しますか？')) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        row.remove();
+                    } else {
+                        alert('削除に失敗しました: ' + response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('削除に失敗しました: ' + error);
+                }
+            });
+        }
+    });
 });

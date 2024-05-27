@@ -14,8 +14,8 @@ class ProductController extends Controller
 {
     // 一覧画面
     public function index() {
-        $products = Product::with(['company'])->get();
-        return view('index', ['products' => $products]);
+        $products = Product::with('company')->whereNull('deleted_at')->get();
+        return view('index', compact('products'));
     }
 
     // 検索
@@ -172,9 +172,9 @@ class ProductController extends Controller
         try {
             $product = Product::findOrFail($id);
             $product->delete();
-            return redirect()->route('products.list');
+            return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return back();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 }
