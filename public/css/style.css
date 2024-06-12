@@ -188,6 +188,10 @@ button {
     background-color: #d3d3d8;
 }
 
+.table__list thead tr th a {
+    color: #333;
+}
+
 .list__btn--detail {
     background-color: #008db7;
 }

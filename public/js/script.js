@@ -1,5 +1,4 @@
-$(document).ready(function () {
-    console.log('Document is ready');
+$(function () {
     $('#search-button').on('click', function () {
         console.log('Search button clicked');
         var keyword = $('#keyword').val();
@@ -8,12 +7,6 @@ $(document).ready(function () {
         var priceMax = $('#price_max').val();
         var stockMin = $('#stock_min').val();
         var stockMax = $('#stock_max').val();
-        console.log('Keyword:', keyword);
-        console.log('Company Name:', companyName);
-        console.log('Price Min:', priceMin);
-        console.log('Price Max:', priceMax);
-        console.log('Stock Min:', stockMin);
-        console.log('Stock Max:', stockMax);
         $.ajax({
             url: searchUrl,
             type: 'GET',
@@ -26,7 +19,6 @@ $(document).ready(function () {
                 stock_max: stockMax
             },
             success: function (response) {
-                console.log('AJAX request successful', response);
                 var productTable = $('#product-list');
                 productTable.empty();
                 $.each(response.products, function (index, product) {
@@ -84,5 +76,57 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $('.sort').on('click', function (e) {
+        e.preventDefault();
+
+        var sortColumn = $(this).data('sort');
+        var sortDirection = $(this).hasClass('asc') ? 'desc' : 'asc';
+
+        // 現在のソート方向を切り替え
+        $(this).toggleClass('asc', sortDirection === 'asc');
+        $(this).toggleClass('desc', sortDirection === 'desc');
+
+        $.ajax({
+            url: sortUrl,
+            type: 'GET',
+            data: {
+                sort_column: sortColumn,
+                sort_direction: sortDirection
+            },
+            success: function (response) {
+                var products = response.products;
+                var productRows = '';
+
+                products.forEach(function (product) {
+                    productRows += '<tr>' +
+                        '<td>' + product.id + '</td>' +
+                        '<td>' + (product.img_path ? '<img src="' + assetBaseUrl + product.img_path + '" alt="Image" width="30" height="auto">' : '') + '</td>' +
+                        '<td>' + product.product_name + '</td>' +
+                        '<td>¥' + product.price + '</td>' +
+                        '<td>' + product.stock + '</td>' +
+                        '<td>' + product.company.company_name + '</td>' +
+                        '<td>' +
+                        '<button class="list__btn--detail" type="button">' +
+                        '<a href="' + detailUrlBase.replace(':id', product.id) + '">詳細</a>' +
+                        '</button>' +
+                        '</td>' +
+                        '<td>' +
+                        '<form action="' + destroyUrlBase.replace(':id', product.id) + '" method="POST" class="delete-form">' +
+                        '<input type="hidden" name="_token" value="' + $('meta[name="csrf-token"]').attr('content') + '">' +
+                        '<input type="hidden" name="_method" value="DELETE">' +
+                        '<button type="submit" class="list__btn--remove">削除</button>' +
+                        '</form>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#product-list').html(productRows);
+            },
+            error: function (xhr, status, error) {
+                console.error('Sort failed', status, error);
+            }
+        });
     });
 });

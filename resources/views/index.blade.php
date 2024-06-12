@@ -33,15 +33,14 @@
     <button type="button" id="search-button" data-search-url="{{ route('products.search') }}">検索</button>
 </form>
 
-
 <table class="table__list">
     <thead>
         <tr>
-            <th>ID</th>
+            <th><a href="#" class="sort" data-sort="id">ID</a></th>
             <th>商品画像</th>
-            <th>商品名</th>
-            <th>価格</th>
-            <th>在庫数</th>
+            <th><a href="#" class="sort" data-sort="product_name">商品名</a></th>
+            <th><a href="#" class="sort" data-sort="price">価格</a></th>
+            <th><a href="#" class="sort" data-sort="stock">在庫数</a></th>
             <th>メーカー名</th>
             <th colspan="2">
                 <button><a href="{{ route('products.add') }}">新規登録</a></button>
@@ -84,6 +83,7 @@
     var detailUrlBase = "{{ route('products.detail', ['id' => ':id']) }}";
     var destroyUrlBase = "{{ route('products.destroy', ['id' => ':id']) }}";
     var csrfToken = '{{ csrf_token() }}';
+    var sortUrl = "{{ route('products.sort') }}";
 </script>
 <script src="{{ asset('js/script.js') }}"></script>
 @endsection

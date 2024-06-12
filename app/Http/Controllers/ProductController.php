@@ -14,9 +14,26 @@ class ProductController extends Controller
 {
     // 一覧画面
     public function index() {
-        $products = Product::with('company')->whereNull('deleted_at')->get();
+        $products = Product::with('company')
+            ->orderBy('id', 'desc')
+            ->get();
+    
         return view('index', compact('products'));
     }
+    
+
+    //ソート
+    public function sort(Request $request) {
+        $sortColumn = $request->input('sort_column', 'id');
+        $sortDirection = $request->input('sort_direction', 'desc');
+    
+        $products = Product::with('company')
+            ->orderBy($sortColumn, $sortDirection)
+            ->get();
+    
+        return response()->json(['products' => $products]);
+    }
+    
 
     // 検索
     public function search(Request $request) {
