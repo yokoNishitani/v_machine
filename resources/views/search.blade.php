@@ -25,9 +25,6 @@
     <button type="button" id="search-button" data-search-url="{{ route('products.search') }}">検索</button>
 </form>
 
-
-</form>
-
 <table class="table__list">
     <thead>
         <tr>

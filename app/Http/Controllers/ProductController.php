@@ -21,7 +21,6 @@ class ProductController extends Controller
         return view('index', compact('products'));
     }
     
-
     //ソート
     public function sort(Request $request) {
         $sortColumn = $request->input('sort_column', 'id');
@@ -34,15 +33,14 @@ class ProductController extends Controller
         return response()->json(['products' => $products]);
     }
     
-
     // 検索
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
-        $priceMin = $request->input('price_min'); // 価格の下限を取得
-        $priceMax = $request->input('price_max'); // 価格の上限を取得
-        $stockMin = $request->input('stock_min'); // 在庫数の下限を取得
-        $stockMax = $request->input('stock_max'); // 在庫数の上限を取得
+        $priceMin = $request->input('price_min');
+        $priceMax = $request->input('price_max');
+        $stockMin = $request->input('stock_min');
+        $stockMax = $request->input('stock_max');
     
         $query = Product::query();
     
@@ -76,7 +74,6 @@ class ProductController extends Controller
     
         return response()->json(['products' => $products]);
     }
-    
 
     // 詳細画面
     public function getId($id) {
