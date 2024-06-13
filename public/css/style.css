@@ -128,21 +128,43 @@ button {
 }
 
 .form__sort div {
-    width: 80%;
+    width: 100%;
 }
 
 .form__sort div input,
 .form__sort div select {
     padding: 5px;
-    width: 40%;
 }
 
-.form__sort div select {
-    margin-left: 10px;
+.form__sort--row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.form__sort--row:first-child input,
+.form__sort--row:first-child select {
+    width: 45%;
+}
+
+.form__sort--row:first-child select {
+    margin-left: 5px;
+}
+
+.form__sort--row:last-child {
+    margin-bottom: 0;
+}
+
+.form__sort--row div {
+    width: 45%;
+}
+
+.form__sort--row div:last-child {
+    margin-left: 5px;
 }
 
 .form__sort button {
-    padding: 5px 20px;
+    padding: 15px 20px;
 }
 
 .table__list {
@@ -158,12 +180,16 @@ button {
     text-align: center;
 }
 
-.table__list tr:first-child button {
+.table__list thead tr button {
     background-color: #ed6d35;
 }
 
 .table__list tr:nth-child(2n) {
     background-color: #d3d3d8;
+}
+
+.table__list thead tr th a {
+    color: #333;
 }
 
 .list__btn--detail {

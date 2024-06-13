@@ -14,32 +14,66 @@ class ProductController extends Controller
 {
     // 一覧画面
     public function index() {
-        $products = Product::with(['company'])->get();
-        return view('index', ['products' => $products]);
+        $products = Product::with('company')
+            ->orderBy('id', 'desc')
+            ->get();
+    
+        return view('index', compact('products'));
     }
-
+    
+    //ソート
+    public function sort(Request $request) {
+        $sortColumn = $request->input('sort_column', 'id');
+        $sortDirection = $request->input('sort_direction', 'desc');
+    
+        $products = Product::with('company')
+            ->orderBy($sortColumn, $sortDirection)
+            ->get();
+    
+        return response()->json(['products' => $products]);
+    }
+    
     // 検索
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $companyName = $request->input('company_name');
-
+        $priceMin = $request->input('price_min');
+        $priceMax = $request->input('price_max');
+        $stockMin = $request->input('stock_min');
+        $stockMax = $request->input('stock_max');
+    
         $query = Product::query();
-
+    
         if ($keyword) {
             $query->where('product_name', 'like', '%' . $keyword . '%');
         }
-
+    
         if ($companyName) {
             $query->whereHas('company', function ($query) use ($companyName) {
                 $query->where('company_name', $companyName);
             });
         }
-
-        $products = $query->get();
-
-        return view('search', ['products' => $products]);
+    
+        if ($priceMin) {
+            $query->where('price', '>=', $priceMin);
+        }
+    
+        if ($priceMax) {
+            $query->where('price', '<=', $priceMax);
+        }
+    
+        if ($stockMin) {
+            $query->where('stock', '>=', $stockMin);
+        }
+    
+        if ($stockMax) {
+            $query->where('stock', '<=', $stockMax);
+        }
+    
+        $products = $query->with('company')->get();
+    
+        return response()->json(['products' => $products]);
     }
-
 
     // 詳細画面
     public function getId($id) {
@@ -152,9 +186,9 @@ class ProductController extends Controller
         try {
             $product = Product::findOrFail($id);
             $product->delete();
-            return redirect()->route('products.list');
+            return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return back();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 }
