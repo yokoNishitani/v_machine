@@ -85,7 +85,6 @@ $(function () {
         fetchProducts(data);
     });
     
-    // ソートリンクのクリックイベント
     $('.sort').on('click', function (e) {
         e.preventDefault();
         var $this = $(this);

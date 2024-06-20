@@ -34,7 +34,6 @@ Route::get('/products/sort', 'ProductController@sort')->name('products.sort');
 // 検索
 Route::get('/products/search', 'ProductController@search')->name('products.search');
 
-
 // 詳細
 Route::get('/detail/{id}', 'ProductController@getId')->name('products.detail');
 
